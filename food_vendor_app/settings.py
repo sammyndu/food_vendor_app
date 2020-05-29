@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,12 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'u!9^5_&nycr+%l%rwzi4g@vyz#!dp3@*mk6fe_0d_$)^8a6ey!'
 
-ENCRYPT_KEY = b'O2wVC5k3jKSWOm88Jr8YxA_LzYcWKRmmQVFuMhqn5Rk='
+ENCRYPT_KEY = os.environ.get('ENCRYPT_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'food-vendors-app.herokuapp.com']
 
 
 # Application definition
@@ -101,6 +102,9 @@ DATABASES = {
         'PORT': '5433',
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation

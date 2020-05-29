@@ -33,7 +33,7 @@ class CustomerViewSet(APIView):
                 user_serializer.save()
                 email = request_data['email']
                 mail = encrypt(email)
-                url = 'http://localhost:8000/confirmsignup/?mail='+mail
+                url = 'https://food-vendors-app.herokuapp.com/confirmsignup/?mail='+mail
                 send_mail('Confirm Email', 'Click the link below to complete email verification \n'+url, 'samndu2@gmail.com', [email], 
                 html_message="<h4>Click <a href='"+url+"'>here</a> to complete email verification</h4>", fail_silently=False)
                 return Response(serializer.data, status=201)
