@@ -157,12 +157,6 @@ REST_FRAMEWORK = {
     )
 }
 
-SWAGGER_SETTINGS = {
-
-    'VALIDATOR_URL': 'http://localhost:8000',
-
-}
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
